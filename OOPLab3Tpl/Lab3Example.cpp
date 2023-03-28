@@ -8,15 +8,16 @@
 #endif
 using namespace std;
 
-class Icosahedron {
-	double a; // side of the icosahedron
+class Romb {
+	double a, d; // side and diagonal side of the romb
 	unsigned int color;
 public:
-	Icosahedron() : a(1.0), color(0) {}
-	Icosahedron(double ai) : a(ai), color(0) {}
-	Icosahedron(int ic) : a(1.0) { if (ic >= 0) color = ic; else color = 0; }
-	Icosahedron(double a, int c) {
+	Romb() : a(1.0), d(2.0), color(0) {}
+	Romb(double ai) : a(ai), color(0) {}
+	Romb(int ic) : a(1.0) { if (ic >= 0) color = ic; else color = 0; }
+	Romb(double a, double d, int c) {
 		this->a = a;
+		this->d = d;
 		if (c >= 0) color = c; else color = 0;
 	}
 	double getA() const
@@ -32,6 +33,19 @@ public:
 		}
 		this->a = a;
 	}
+	double getD() const
+	{
+		return d;
+	}
+	void setD(double d)
+	{
+		if (d < 0 || d > 1.e+100)
+		{
+			cout << " Error set  D \n";
+			return;
+		}
+		this->d = d;
+	}
 	double getColor() const
 	{
 		return color;
@@ -46,40 +60,45 @@ public:
 		this->color = c;
 	}
 	double S() {
-		return 5 * a * a * sqrt(3.0);
+		return (d * d)/2;
 	}
-	double V() {
-		return 5 * a * a * a * (3 + sqrt(5.0)) / 12.0;
-	}
-	double r() {
-		return a * (3 + sqrt(5.0)) / (4.0 * sqrt(3.0));
-	}
-	double R() {
-		return sqrt(2 * (5 + sqrt(5.0) * a)) / 4.0;
+	double P() {
+		return 4 * a;
 	}
 	void printInfo()
 	{
-		cout << "\n a= " << a << " color = " << color;
-		cout << "  S= " << S() << " V = " << V() << "  r= " << r() << " V = " << R() << endl;
+		cout << "\n a= " << a << "\n d= " << d << "\n color = " << color;
+		cout << "  S= " << S() << " P = " << P() << endl;
 	}
 
 };
 int mainExample1()
 {
-	Icosahedron obj;
+	Romb obj;
 	obj.printInfo();
-	double in_a; int in_color;
-	cout << " Input side and color Icosahedron  "; cin >> in_a >> in_color;
-	Icosahedron obj1(in_a), obj2(in_color), obj3(in_a, in_color);
+	double in_a, in_d; int in_color;
+	cout << " Input side and color Romb  "; cin >> in_a >> in_d >> in_color;
+	Romb obj1(in_a), obj2(in_d), obj3(in_color), obj4(in_a, in_d, in_color);
 	obj1.printInfo();
 	obj2.printInfo();
 	obj3.printInfo();
+	obj4.printInfo();
+
+	cout << "Test:";
 	obj.setA(-5);
 	obj.printInfo();
 	obj.setA(5);
 	obj.printInfo();
 	obj.setA(2.e100);
 	obj.printInfo();
+
+	obj.setD(-5);
+	obj.printInfo();
+	obj.setD(5);
+	obj.printInfo();
+	obj.setD(2.e100);
+	obj.printInfo();
+
 	obj.setColor(-10);
 	obj.printInfo();
 	obj.setColor(10);
@@ -460,6 +479,3 @@ a.imag(im);
 
 	return 1;
 }
-
-/// 
-
