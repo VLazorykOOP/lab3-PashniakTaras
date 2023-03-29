@@ -142,13 +142,14 @@ o визначити функції порівняння: більше, менш
 конструкторі із вказівником. Передбачити можливість підрахунку числа об'єктів даного типу.
 Написати програму тестування всіх можливостей цього класу.
 */
+//const int OK = 1;
 class Vec2
 {
 	float  x, y, z;
 	int state;
 	static int count;
 public:
-	Vec2() : x(0), y(0) z(0) {
+	Vec2() : x(0), y(0) , z(0) {
 		state = OK; count++;
 	}   // 	 конструктор без параметрів
 	Vec2(float iv) : x(iv), y(iv), z(iv) {
@@ -164,8 +165,8 @@ public:
 	Vec2(const Vec2&);
 	Vec2 Add(Vec2& d);
 	Vec2 Sub(Vec2& d);
-	Vec2 Mul(double d);
-	Vec2 Div(double d);
+	Vec2 Mul(float d);
+	Vec2 Div(float d);
 	void Input();   //  !!! Без первантаження операцій    
 	void Output();  //  !!! Без первантаження операцій
 	bool CompLessAll(Vec2& s);
@@ -237,7 +238,7 @@ void task2() {
 		return tmp;
 	}
 	Vec2 Vec2::Mul(float d) {
-		Vec2 tmp;
+		Vec2 tmp(*this);
 		tmp.x = x * d;
 		tmp.y = y * d;
 		tmx.z = z * d;
@@ -324,8 +325,8 @@ void task3() {
 int main()
 {
 
-//  Код виконання завдань
-//  Головне меню завдань
+	//  Код виконання завдань
+	//  Головне меню завдань
 	char ch = '5';
 	do {
 		system("cls");
@@ -346,6 +347,6 @@ int main()
 		ch = cin.get();
 	} while (ch != '3');
 	return 0;
-//  Функції та класи можуть знаходитись в інших файлах проекту
+	//  Функції та класи можуть знаходитись в інших файлах проекту
 }
 
