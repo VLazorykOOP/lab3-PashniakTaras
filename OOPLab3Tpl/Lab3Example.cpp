@@ -173,7 +173,7 @@ public:
 		return count;
 	}
 	int getState() { return state; }
-};
+};	
 int Vec2::count = 0;
 Vec2::Vec2(double ix, double iy) {
 	x = ix; y = iy;
