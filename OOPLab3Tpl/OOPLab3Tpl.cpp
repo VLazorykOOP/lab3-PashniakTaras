@@ -142,8 +142,23 @@ o визначити функції порівняння: більше, менш
 конструкторі із вказівником. Передбачити можливість підрахунку числа об'єктів даного типу.
 Написати програму тестування всіх можливостей цього класу.
 */
-//const int OK = 1;
+const int OK = 0;
+const int BAD_INIT = 1;
+const int BAD_DIV = 2;
+
 class Vec2
+{
+	float x, y, z;
+	int state;
+	static int count
+public:
+	Vec2(); x(0), y(0), z(0) {
+		state = OK; count++;
+	}	// o конструктор без параметрів(інінціалізує поля в нуль);
+};
+
+
+/* class Vec2
 {
 	float  x, y, z;
 	int state;
@@ -151,12 +166,23 @@ class Vec2
 public:
 	Vec2() : x(0), y(0) , z(0) {
 		state = OK; count++;
-	}   // 	 конструктор без параметрів
+	}   // o конструктор без параметрів(інінціалізує поля в нуль);
+
 	Vec2(float iv) : x(iv), y(iv), z(iv) {
 		state = OK; count++;
-	}
+	}	// o конструктор з одним параметром типу float(інінціалізує поля x, y та z значенням параметру);
+
 	Vec2(float ix, float iy, float iz);
-	Vec2(float* v);
+	Vec2(float* v) {
+		if (v == nullptr) {
+			state = BAD_INIT; x = 0; y = 0; z = 0;
+		}
+		else {
+			x = v[0]; y = v[1]; z = v[2];
+			state = OK;
+		}
+		count++;
+	}
 	~Vec2() {
 		count--;
 		cout << " state Vec: " << state;
@@ -170,38 +196,27 @@ public:
 	void Input();   //  !!! Без первантаження операцій    
 	void Output();  //  !!! Без первантаження операцій
 	bool CompLessAll(Vec2& s);
-	static int getCount() {
+	int getCount() {
 		if (count <= 0) cout << " Немає об'єктів Vec2 ";
 		return count;
 	}
 	int getState() { return state; }
 
-
 };
 void task2() {
-	
 
-	int Vec2::count = 0;
+	Vec2::count = 0;
 	Vec2::Vec2(float ix, float iy, float iz) {
 		x = ix; y = iy; z = iz;
 		state = OK;
 		count++;
-	}
+	};
 	Vec2::Vec2(const Vec2& s) {
 		//if (this == &s) return; //  // the expression is used in the old standard
 		x = s.x; y = s.y; z = s.z; state = OK;
 		count++;
 	};
-	Vec2::Vec2(float* v) {
-		if (v == nullptr) {
-			state = BAD_INIT; x = 0; y = 0; z = 0;
-		}
-		else {
-			x = v[0]; y = v[1]; z = v[2];
-			state = OK;
-		}
-		count++;
-	}
+	// Vec2::Vec2(float* v) {}
 	void Vec2::Input() {
 		cout << " Input  x y z";
 		cin >> x >> y >> z;
@@ -234,14 +249,14 @@ void task2() {
 		}
 		tmp.x = x / d;
 		tmp.y = y / d;
-		tmx.z = z / d;
+		tmp.z = z / d;
 		return tmp;
 	}
 	Vec2 Vec2::Mul(float d) {
 		Vec2 tmp(*this);
 		tmp.x = x * d;
 		tmp.y = y * d;
-		tmx.z = z * d;
+		tmp.z = z * d;
 		return tmp;
 	}
 
@@ -300,11 +315,11 @@ void task2() {
 		ObjCDef = ObjCDef.Mul(5);
 		ObjCDef.Output();
 		ObjCDef = ObjCDef.Div(1.3);
-		if (ObjCDef.getState() == STATE::BAD_DIV) cout << "BAD_DIV \n";
+		if (ObjCDef.getState() == BAD_DIV) cout << "BAD_DIV \n";
 		ObjCDef.Output();
 
 		ObjCDef = ObjCDef.Div(0.0);
-		if (ObjCDef.getState() == STATE::BAD_DIV) cout << "BAD_DIV \n";
+		if (ObjCDef.getState() == BAD_DIV) cout << "BAD_DIV \n";
 		ObjCDef.Output();
 		cout << "ObjCopy state " << ObjCopy.getState() << endl;
 		if (ObjCopy.CompLessAll(ObjCDef))  cout << "ObjCopy less ObjDef  " << endl;
@@ -319,9 +334,7 @@ void task2() {
 
 	}
 }
-void task3() {
 
-}
 int main()
 {
 
@@ -340,7 +353,7 @@ int main()
 		switch (ch) {
 		case '1': task1();   break;
 		case '2': task2();   break;
-		case '3': task3();   break;
+		case '3': task2();   break;
 		case '4': return 0;
 		}
 		cout << "\nPress any key and enter\n";
@@ -350,3 +363,4 @@ int main()
 	//  Функції та класи можуть знаходитись в інших файлах проекту
 }
 
+*/
