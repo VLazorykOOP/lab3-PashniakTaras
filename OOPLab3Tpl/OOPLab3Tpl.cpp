@@ -160,7 +160,9 @@ public:
 	}	// o конструктор з одним параметром типу float(інінціалізує поля x, y та z значенням параметру);
 
 	Vec2(float ix, float iy, float iz);
-	Vec2(float ix, float iy);
+	Vec2(float ix, float iy) : x(ix), y(iy),z(0) {
+		state = OK; count++;
+	};
 	Vec2(float* v) {
 		if (v == nullptr) {
 			state = BAD_INIT; x = 0; y = 0; z = 0;
@@ -269,7 +271,7 @@ public:
 		Vec2  ObjP2(a, b);
 		ObjP2.Output();
 		Vec2 ObjCopy(ObjP2);
-		float* v = nullptr, v2[] = { 1.2, 3.3 };
+		float* v = nullptr, v2[] = { 1.2f, 3.3f };
 		Vec2  ObjP3(v2);
 		if (ObjP3.getState() != OK) cout << " ObjP3  x= 0  y= 0  \n";
 		Vec2  ObjP4(v2);
@@ -324,18 +326,19 @@ int main()
 	do {
 		system("cls");
 		std::cout << " Lab #3 \n";
-		cout << "Main menu: \n1)Task 1 \n2)Task 2 \n3)Task 3 \n 4) Exit\n\n";
+		cout << "Main menu: \n1)Task 1 \n2)Task 2 \n3) Exit\n\n";
 		cout << "Choose the task: ";
 		ch = cin.get();
 
 		cin.get();
-		/*
+		
 		switch (ch) {
-		case '1': task1();   break;
-		case '2': task2();   break;
-		case '3': task2();   break;
+		case '1': //task1();   
+			break;
+		case '2': mainExample3();   break;
+		case '3': // task2();   break;
 		case '4': return 0;
-		}*/
+		}
 		cout << "\nPress any key and enter\n";
 		ch = cin.get();
 	} while (ch != '3');
