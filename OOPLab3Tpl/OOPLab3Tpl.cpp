@@ -12,10 +12,9 @@
 #endif
 // Ваші файли загловки 
 //
-#include "Lab3Example.h"
 using namespace std;
 
-class Romb {
+/*class Romb {
 	double a, d; // side and diagonal side of the romb
 	unsigned int color;
 public:
@@ -114,7 +113,7 @@ void task1()
 	obj.printInfo();
 	cout << " End testing \n";
 	cin.get();
-}
+}*/
 
 /*
 Створити тип даних - клас вектор, який має поля x, y та z типу float і змінну стану. У
@@ -148,18 +147,6 @@ const int BAD_DIV = 2;
 
 class Vec2
 {
-	float x, y, z;
-	int state;
-	static int count
-public:
-	Vec2(); x(0), y(0), z(0) {
-		state = OK; count++;
-	}	// o конструктор без параметрів(інінціалізує поля в нуль);
-};
-
-
-/* class Vec2
-{
 	float  x, y, z;
 	int state;
 	static int count;
@@ -173,6 +160,7 @@ public:
 	}	// o конструктор з одним параметром типу float(інінціалізує поля x, y та z значенням параметру);
 
 	Vec2(float ix, float iy, float iz);
+	Vec2(float ix, float iy);
 	Vec2(float* v) {
 		if (v == nullptr) {
 			state = BAD_INIT; x = 0; y = 0; z = 0;
@@ -196,16 +184,15 @@ public:
 	void Input();   //  !!! Без первантаження операцій    
 	void Output();  //  !!! Без первантаження операцій
 	bool CompLessAll(Vec2& s);
-	int getCount() {
+	static int getCount() {
 		if (count <= 0) cout << " Немає об'єктів Vec2 ";
 		return count;
 	}
 	int getState() { return state; }
 
-};
-void task2() {
+}; //кінець класу
 
-	Vec2::count = 0;
+	int Vec2::count = 0; 
 	Vec2::Vec2(float ix, float iy, float iz) {
 		x = ix; y = iy; z = iz;
 		state = OK;
@@ -267,16 +254,13 @@ void task2() {
 	}
 
 	//Teстування
-	int mainExample3()
+	void mainExample3()
 	{
-#if !defined(CODING_VS_CODE)
 		setlocale(LC_CTYPE, "ukr");
 		cout << "Тестування створенного класу \n";
 		cout << "Тестування конструкторiв \n";
-#else 
 		cout << "Testing create class  \n";
 		cout << "Testing crot's  \n";
-#endif
 		Vec2 ObjCDef;
 		ObjCDef.Output();
 		Vec2 ObjP1(10.0);
@@ -290,7 +274,6 @@ void task2() {
 		if (ObjP3.getState() != OK) cout << " ObjP3  x= 0  y= 0  \n";
 		Vec2  ObjP4(v2);
 		if (ObjP4.getState() != OK) cout << " ObjP4 x= 0  y= 0  \n";
-#if !defined(CODING_VS_CODE)
 		cout << " Кiлькiсть створених об'єктiв Vec2 " << Vec2::getCount() << endl;
 		cout << "Тестування введення \n";
 		ObjCDef.Input();
@@ -300,7 +283,7 @@ void task2() {
 		cout << " \n Кiлькiсть створених об'єктiв Vec2 до Sub " << Vec2::getCount() << endl;
 		ObjCDef = ObjCDef.Sub(ObjP2);
 		cout << " \n Кiлькiсть створених об'єктiв Vec2 пiсля Sub " << Vec2::getCount() << endl;
-#else 
+
 		cout << "Testing input \n";
 		ObjCDef.Input();
 		cout << "Testing gunction \n";
@@ -309,7 +292,7 @@ void task2() {
 		cout << " \n Counts create objects Vec2 before  Sub " << Vec2::getCount() << endl;
 		ObjCDef = ObjCDef.Sub(ObjP2);
 		cout << " \n  Counts create objects Vec2 after Sub  " << Vec2::getCount() << endl;
-#endif
+
 
 		ObjCDef.Output();
 		ObjCDef = ObjCDef.Mul(5);
@@ -325,19 +308,16 @@ void task2() {
 		if (ObjCopy.CompLessAll(ObjCDef))  cout << "ObjCopy less ObjDef  " << endl;
 
 
-#if !defined(CODING_VS_CODE)
 		cout << "Завершення  тестування  \n";
-#else 
-		cout << "Completion of testing  \n";
-#endif
-		return 1;
 
+		cout << "Completion of testing  \n";
+
+		return;
 	}
-}
+
 
 int main()
 {
-
 	//  Код виконання завдань
 	//  Головне меню завдань
 	char ch = '5';
@@ -349,13 +329,13 @@ int main()
 		ch = cin.get();
 
 		cin.get();
-
+		/*
 		switch (ch) {
 		case '1': task1();   break;
 		case '2': task2();   break;
 		case '3': task2();   break;
 		case '4': return 0;
-		}
+		}*/
 		cout << "\nPress any key and enter\n";
 		ch = cin.get();
 	} while (ch != '3');
@@ -363,4 +343,3 @@ int main()
 	//  Функції та класи можуть знаходитись в інших файлах проекту
 }
 
-*/

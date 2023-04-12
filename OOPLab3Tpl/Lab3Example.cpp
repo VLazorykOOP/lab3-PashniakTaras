@@ -1,10 +1,10 @@
-﻿#if !defined(_MSC_VER)
+﻿/*#if !defined(_MSC_VER)
 #define CODING_VS_CODE
 #endif
 #include <iostream>
 #include <math.h>
 #if !defined(CODING_VS_CODE)
-	#include <clocale>
+#include <clocale>
 #endif
 using namespace std;
 
@@ -60,7 +60,7 @@ public:
 		this->color = c;
 	}
 	double S() {
-		return (d * d)/2;
+		return (d * d) / 2;
 	}
 	double P() {
 		return 4 * a;
@@ -137,6 +137,7 @@ o	функцію ділення на ціле типу double(при ділен�
 o	визначити функцію порівняння менше які повертають true або false.
 У змінну стани встановлювати код помилки, діленні на 0, при передачі NULL (nulptr) в конструкторі із вказівником. Передбачити можливість підрахунку числа об'єктів даного типу. Написати програму тестування всіх можливостей цього класу.
 */
+/*
 enum STATE {
 	OK, BAD_INIT, BAD_DIV
 };
@@ -173,7 +174,8 @@ public:
 		return count;
 	}
 	int getState() { return state; }
-};	
+};
+
 int Vec2::count = 0;
 Vec2::Vec2(double ix, double iy) {
 	x = ix; y = iy;
@@ -245,7 +247,7 @@ int mainExample3()
 #if !defined(CODING_VS_CODE)
 	setlocale(LC_CTYPE, "ukr");
 	cout << "Тестування створенного класу \n";
-	cout << "Тестування конструкторiв \n"; 
+	cout << "Тестування конструкторiв \n";
 #else 
 	cout << "Testing create class  \n";
 	cout << "Testing crot's  \n";
@@ -297,7 +299,7 @@ int mainExample3()
 	cout << "ObjCopy state " << ObjCopy.getState() << endl;
 	if (ObjCopy.CompLessAll(ObjCDef))  cout << "ObjCopy less ObjDef  " << endl;
 
-	
+
 #if !defined(CODING_VS_CODE)
 	cout << "Завершення  тестування  \n";
 #else 
@@ -316,7 +318,7 @@ o	деструктор звільняє пам'ять;
 o	визначити функції друку, додавання;
 У змінну стани встановлювати код помилки, коли не вистачає пам'яті, виходить за межі масиву. Передбачити можливість підрахунку числа об'єктів даного типу. Написати програму тестування всіх можливостей цього класу.
 */
-
+/* 
 #include<complex>
 using namespace std;
 typedef complex<double> ComplexDouble;
@@ -350,9 +352,9 @@ ComplexVector::ComplexVector(int n) {
 	num = n;
 	v = new ComplexDouble[n];
 	for (int i = 0; i < n; i++) {
-			v[i] = 0.0;
-			//v[i]._Val[_RE]=0.0; v[i]._Val[_IM]=0.0;  
-		}
+		v[i] = 0.0;
+		//v[i]._Val[_RE]=0.0; v[i]._Val[_IM]=0.0;  
+	}
 
 }
 ComplexVector::ComplexVector(int n, ComplexDouble& b) : ComplexVector(n) {
@@ -363,10 +365,10 @@ ComplexVector::ComplexVector(int n, ComplexDouble& b) : ComplexVector(n) {
 }
 
 ComplexVector::ComplexVector(int n, ComplexDouble* p) : ComplexVector(n) {
-	if (p != nullptr) 
-	for (int i = 0; i < num; i++) 
-		v[i] = p[i];
-	
+	if (p != nullptr)
+		for (int i = 0; i < num; i++)
+			v[i] = p[i];
+
 }
 
 ComplexVector::ComplexVector(const ComplexVector& s) {
@@ -390,28 +392,28 @@ ComplexVector& ComplexVector::operator=(const ComplexVector& s) {
 	return *this;
 }
 void ComplexVector::Input() {
-	int in_num=0;
-		do {
-			cout << "Input size Vec\n";
-			cin >> in_num;
-		} while (in_num <= 0);
-		if (num != in_num ) {
-			num = in_num;
-			if (v) delete[] v;
+	int in_num = 0;
+	do {
+		cout << "Input size Vec\n";
+		cin >> in_num;
+	} while (in_num <= 0);
+	if (num != in_num) {
+		num = in_num;
+		if (v) delete[] v;
 		v = new ComplexDouble[num];
 	}
 	for (int i = 0; i < num; i++) {
 
 #if defined(_MSC_VER)
-cout << " v [ " << i << " ] real img  "; cin >> v[i] >> v[i]._Val[_IM];
+		cout << " v [ " << i << " ] real img  "; cin >> v[i] >> v[i]._Val[_IM];
 #else 
-double re,im;
-cout << " v [ " << i << " ] real img  "; cin >> re>>im;
-v[i].real(re); 
-v[i].imag(im);
+		double re, im;
+		cout << " v [ " << i << " ] real img  "; cin >> re >> im;
+		v[i].real(re);
+		v[i].imag(im);
 #endif		
-		
-		
+
+
 	}
 }
 
@@ -441,13 +443,13 @@ int mainExample4()
 	ComplexDouble a(1.0, 2), b, c;
 	cout << a << endl;
 #if defined(_MSC_VER)
-    b._Val[_RE] = 21.3;
+	b._Val[_RE] = 21.3;
 	b._Val[_IM] = 22.3;
 #else 
-    b.real( 21.3);
-	b.imag (22.3);
+	b.real(21.3);
+	b.imag(22.3);
 #endif	
-	
+
 	cout << b << endl;
 	c = a + b;
 	cout << c << endl;
@@ -460,12 +462,12 @@ int mainExample4()
 	cout << " Input a " << endl;
 
 #if defined(_MSC_VER)
- cin >> a >> a._Val[_IM];
+	cin >> a >> a._Val[_IM];
 #else 
-double re,im;
-cin >> re>>im;
-a.real(re); 
-a.imag(im);
+	double re, im;
+	cin >> re >> im;
+	a.real(re);
+	a.imag(im);
 #endif		
 	cout << a << endl;
 	ComplexVector VecObj2(10, a);
@@ -478,4 +480,4 @@ a.imag(im);
 	VecObj1.Output();
 
 	return 1;
-}
+} */
