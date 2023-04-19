@@ -313,7 +313,7 @@ public:
 		cout << "Завершення  тестування  \n";
 
 		cout << "Completion of testing  \n";
-
+		cin.get();
 		return;
 	}
 
