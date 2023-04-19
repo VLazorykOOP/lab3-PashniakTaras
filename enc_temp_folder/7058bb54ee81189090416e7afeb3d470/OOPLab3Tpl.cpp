@@ -301,7 +301,7 @@ public:
 		ObjCDef.Output();
 		ObjCDef = ObjCDef.Div(1.3);
 		if (ObjCDef.getState() == BAD_DIV) cout << "BAD_DIV \n";
-		ObjCDef.Output(); //0
+		ObjCDef.Output();
 
 		ObjCDef = ObjCDef.Div(0.0);
 		if (ObjCDef.getState() == BAD_DIV) cout << "BAD_DIV \n";
